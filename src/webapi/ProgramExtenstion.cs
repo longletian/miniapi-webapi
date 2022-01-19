@@ -4,7 +4,11 @@
     {
         public static void AddCommonService(this WebApplicationBuilder builder)
         {
-            builder.Services.AddSwaggerGen();
+            //builder.Services.AddSwaggerGen();
+
+            builder.Services.AddControllers();
+
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
         }
 
         /// <summary>
@@ -36,8 +40,6 @@
                 .AddGraphQLServer();
         }
 
-
-
         public static void ConfigurationService(this WebApplicationBuilder builder)
         {
             builder?.Host.ConfigureAppConfiguration((c) =>
@@ -46,6 +48,14 @@
                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                    .AddEnvironmentVariables();
             });
+        }
+
+        public static void UseGraphqlUI(this IApplicationBuilder builder)
+        {
+            builder.UseGraphQLVoyager(new VoyagerOptions()
+            {
+                GraphQLEndPoint = "/graphql"
+            }, "/graphql-voyager");
         }
     }
 }
