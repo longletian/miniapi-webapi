@@ -26,8 +26,8 @@
     <Folder Include="Infrastructure\Graphql\Mutations\" />
     <Folder Include="Infrastructure\Graphql\Queries\" />
     <Folder Include="Infrastructure\Graphql\Types\" />
-    <Folder Include="Infrastructure\Repository\" />
-    <Folder Include="Model\Dto\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="Model\Dtos\" />
   </ItemGroup>
 
 </Project>

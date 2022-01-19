@@ -4,6 +4,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddCommonService();
 
+builder.ConfigurationService();
+
+builder.AddDbContextService(builder.Configuration.GetConnectionString("DbConnect"));
+
+builder.AddGraphqlService();
+
 builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
@@ -15,6 +21,23 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+
+/// <summary>
+/// 添加实体数据
+/// </summary>
+using (var scope = app.Services.CreateScope())
+{
+    var scopedProvider = scope.ServiceProvider;
+    try
+    {
+        await SeedData.SeedAsync(scopedProvider);
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "An error occurred seeding the DB.");
+    }
+}
 
 try
 {
