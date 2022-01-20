@@ -51,7 +51,6 @@
                     j.HasKey(t => new { t.RoleId, t.PermissionId });
                 });
 
-
             //foreach (var entity in modelBuilder.Model.GetEntityTypes())
             //{
             //    modelBuilder.Entity(entity.Name, builder =>

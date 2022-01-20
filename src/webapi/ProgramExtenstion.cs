@@ -4,8 +4,6 @@
     {
         public static void AddCommonService(this WebApplicationBuilder builder)
         {
-            //builder.Services.AddSwaggerGen();
-
             builder.Services.AddControllers();
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -21,14 +19,12 @@
             builder.Services.AddDbContextPool<AppDbContext>((option) =>
             {
                 option.UseMySql(conStr, new MySqlServerVersion(new Version(8, 0, 27)))
-                            .LogTo(Console.WriteLine, LogLevel.Debug)
-                            .EnableSensitiveDataLogging()
-                            .EnableDetailedErrors();
+                    .LogTo(Console.WriteLine, LogLevel.Debug)
+                    .EnableSensitiveDataLogging()
+                    .EnableDetailedErrors();
             });
 
         }
-
-
 
         /// <summary>
         /// 注入graphql
@@ -37,7 +33,8 @@
         public static void AddGraphqlService(this WebApplicationBuilder builder)
         {
             builder.Services
-                .AddGraphQLServer();
+                .AddGraphQLServer()
+                .AddQueryType<UserQuery>();
         }
 
         public static void ConfigurationService(this WebApplicationBuilder builder)
