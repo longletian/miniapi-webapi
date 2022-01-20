@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddCommonService();
 
-builder.ConfigurationService();
+builder.AddConfigurationService();
 
 builder.AddDbContextService(builder.Configuration.GetConnectionString("DbConnect"));
 
@@ -21,6 +21,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapGraphQLVoyager();
+    endpoints.MapControllers();
+});
 
 app.UseGraphqlUI();
 

@@ -18,12 +18,13 @@
         {
             builder.Services.AddDbContextPool<AppDbContext>((option) =>
             {
-                option.UseMySql(conStr, new MySqlServerVersion(new Version(8, 0, 27)))
-                    .LogTo(Console.WriteLine, LogLevel.Debug)
-                    .EnableSensitiveDataLogging()
-                    .EnableDetailedErrors();
+                option.UseMySql(conStr, new MySqlServerVersion(new Version(8, 0, 27)),
+                    // 配置全局拆分查询
+                    o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
+                        .LogTo(Console.WriteLine, LogLevel.Debug)
+                        .EnableSensitiveDataLogging()
+                        .EnableDetailedErrors();
             });
-
         }
 
         /// <summary>
@@ -37,7 +38,7 @@
                 .AddQueryType<UserQuery>();
         }
 
-        public static void ConfigurationService(this WebApplicationBuilder builder)
+        public static void AddConfigurationService(this WebApplicationBuilder builder)
         {
             builder?.Host.ConfigureAppConfiguration((c) =>
             {
@@ -47,6 +48,10 @@
             });
         }
 
+        /// <summary>
+        /// 引入GraphqlUI
+        /// </summary>
+        /// <param name="builder"></param>
         public static void UseGraphqlUI(this IApplicationBuilder builder)
         {
             builder.UseGraphQLVoyager(new VoyagerOptions()

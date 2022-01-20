@@ -1,4 +1,4 @@
-﻿namespace miniapi_webapi.Model.Dtos
+﻿namespace miniapi_webapi.Model
 {
     public class UserOutput
     {

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using miniapi_webapi.Infrastructure;
 
@@ -10,9 +11,10 @@ using miniapi_webapi.Infrastructure;
 namespace miniapi_webapi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220120035809_update-migration")]
+    partial class updatemigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,6 +83,9 @@ namespace miniapi_webapi.Migrations
                     b.Property<string>("AccountPwd")
                         .HasColumnType("varchar(100)");
 
+                    b.Property<Guid>("DepartmentEntityId")
+                        .HasColumnType("char(36)");
+
                     b.Property<Guid>("DepartmentId")
                         .HasColumnType("char(36)");
 
@@ -113,7 +118,7 @@ namespace miniapi_webapi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DepartmentId");
+                    b.HasIndex("DepartmentEntityId");
 
                     b.ToTable("t_user");
                 });
@@ -232,7 +237,7 @@ namespace miniapi_webapi.Migrations
                 {
                     b.HasOne("miniapi_webapi.Model.Entitys.DepartmentEntity", "DepartmentEntity")
                         .WithMany("UserEntities")
-                        .HasForeignKey("DepartmentId")
+                        .HasForeignKey("DepartmentEntityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
