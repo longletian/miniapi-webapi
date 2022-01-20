@@ -1,6 +1,6 @@
 ﻿namespace miniapi_webapi.Infrastructure.Repository
 {
-    public class DepartmentRepositpory : IDepartmentRepositpory
+    public class DepartmentRepositpory : IDepartmentRepositpory,IAsyncDisposable
     {
         private readonly AppDbContext appDbContext;
 
@@ -62,7 +62,7 @@
         ///  删除
         /// </summary>
         /// <param name="id">Id</param>
-        public async Task<DepartmentEntity> DeleteAsync(Guid id)
+        public async Task<DepartmentEntity?> DeleteAsync(Guid id)
         {
             DepartmentEntity departmentEntity = await appDbContext.DepartmentEntities.Where((x) => x.IsDeleted == 0 && x.Id == id).FirstOrDefaultAsync();
             if (departmentEntity != null)
@@ -81,7 +81,12 @@
         /// <returns></returns>
         public async Task<DepartmentEntity> GetAsync(Guid id)
         {
-            return await appDbContext.DepartmentEntities.Where((x) => x.IsDeleted == 0 && x.Id == id).FirstOrDefaultAsync();
+            return await appDbContext.DepartmentEntities.Where((x) => x.IsDeleted == 0 && x.Id == id).FirstOrDefaultAsync()??throw new ArgumentException("");
+        }
+
+        public ValueTask DisposeAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

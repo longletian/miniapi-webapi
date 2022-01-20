@@ -1,6 +1,6 @@
 ﻿namespace miniapi_webapi.Infrastructure.Repository
 {
-    public interface IUserRepository
+    public interface IUserRepository:IRepositoryBase<UserEntity>
     {
 
     }

@@ -6,7 +6,15 @@
         {
             builder.Services.AddControllers();
 
+            builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+            builder.Services.AddScoped<IDepartmentRepositpory, DepartmentRepositpory>();
+
+            builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+
+            builder.Services.AddScoped<IPermissionRepository, PermissionRepository>();
         }
 
         /// <summary>

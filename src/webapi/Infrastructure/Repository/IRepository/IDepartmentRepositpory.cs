@@ -1,6 +1,6 @@
 ﻿namespace miniapi_webapi.Infrastructure.Repository
 {
-    public interface IDepartmentRepositpory
+    public interface IDepartmentRepositpory:IRepositoryBase<DepartmentEntity>
     {
         /// <summary>
         /// 获取所有的部门
