@@ -5,10 +5,10 @@
         public static async Task SeedAsync(IServiceProvider serviceProvider)
         {
             using var context = new AppDbContext(serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>());
-            if (context.UserEntities.Any())
-            {
-                return;   // 已经初始化过数据，直接返回
-            }
+          
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
+
             var departmentId = Guid.NewGuid();
             //增加一个部门
             await context.DepartmentEntities.AddAsync(

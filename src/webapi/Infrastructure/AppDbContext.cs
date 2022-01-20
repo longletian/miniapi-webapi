@@ -1,6 +1,6 @@
 ﻿namespace miniapi_webapi.Infrastructure
 {
-    internal class AppDbContext : DbContext
+    public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -16,6 +16,11 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<DepartmentEntity>()
+                .HasMany(p => p.UserEntities)
+                .WithOne(p => p.DepartmentEntity)
+                .HasForeignKey(p => p.DepartmentId);
+
             modelBuilder.Entity<UserEntity>()
              .HasMany(p => p.RoleEntities)
              .WithMany(p => p.UserEntities)

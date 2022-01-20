@@ -9,7 +9,7 @@ namespace miniapi_webapi.Model.Entitys
         public UserEntity()
         {
             RoleEntities = new List<RoleEntity>();
-            DepartmentEntity =new DepartmentEntity();
+            DepartmentEntity = new DepartmentEntity();
         }
 
         public Guid Id { get; set; }
@@ -66,7 +66,7 @@ namespace miniapi_webapi.Model.Entitys
         public Guid DepartmentId { get; set; }
 
         [NotMapped]
-        public virtual DepartmentEntity DepartmentEntity { get; set; }
+        public DepartmentEntity DepartmentEntity { get; set; }
 
         [NotMapped]
         public virtual ICollection<RoleEntity> RoleEntities { get; set; }

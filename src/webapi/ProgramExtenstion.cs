@@ -4,8 +4,6 @@
     {
         public static void AddCommonService(this WebApplicationBuilder builder)
         {
-            //builder.Services.AddSwaggerGen();
-
             builder.Services.AddControllers();
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -20,15 +18,14 @@
         {
             builder.Services.AddDbContextPool<AppDbContext>((option) =>
             {
-                option.UseMySql(conStr, new MySqlServerVersion(new Version(8, 0, 27)))
+                option.UseMySql(conStr, new MySqlServerVersion(new Version(8, 0, 27)),
+                    // 配置全局拆分查询
+                    o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
                             .LogTo(Console.WriteLine, LogLevel.Debug)
                             .EnableSensitiveDataLogging()
                             .EnableDetailedErrors();
             });
-
         }
-
-
 
         /// <summary>
         /// 注入graphql
@@ -40,7 +37,7 @@
                 .AddGraphQLServer();
         }
 
-        public static void ConfigurationService(this WebApplicationBuilder builder)
+        public static void AddConfigurationService(this WebApplicationBuilder builder)
         {
             builder?.Host.ConfigureAppConfiguration((c) =>
             {
@@ -50,6 +47,10 @@
             });
         }
 
+        /// <summary>
+        /// 引入GraphqlUI
+        /// </summary>
+        /// <param name="builder"></param>
         public static void UseGraphqlUI(this IApplicationBuilder builder)
         {
             builder.UseGraphQLVoyager(new VoyagerOptions()
