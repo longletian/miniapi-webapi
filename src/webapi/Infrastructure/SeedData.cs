@@ -7,6 +7,7 @@
             using var context = new AppDbContext(serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>());
           
             context.Database.EnsureDeleted();
+            
             context.Database.EnsureCreated();
 
             var departmentId = Guid.NewGuid();

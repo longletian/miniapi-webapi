@@ -14,6 +14,8 @@ builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 
+app.UseRouting();
+
 if (app.Environment.IsDevelopment())
 {
     //app.UseSwagger();
@@ -25,13 +27,13 @@ app.UseHttpsRedirection();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapGraphQLVoyager();
-    endpoints.MapControllers();
+    // endpoints.MapControllers();
 });
 
 app.UseGraphqlUI();
 
 /// <summary>
-/// Ìí¼ÓÊµÌåÊý¾Ý
+/// ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 /// </summary>
 using (var scope = app.Services.CreateScope())
 {
