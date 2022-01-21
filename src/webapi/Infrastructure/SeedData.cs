@@ -1,4 +1,9 @@
-﻿namespace miniapi_webapi.Infrastructure
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace miniapi_webapi.Infrastructure
 {
     public static class SeedData
     {

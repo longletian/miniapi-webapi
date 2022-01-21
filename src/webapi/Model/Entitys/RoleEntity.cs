@@ -1,4 +1,6 @@
-﻿namespace miniapi_webapi.Model
+﻿
+
+namespace miniapi_webapi.Model
 {
     [Table("t_role")]
     public class RoleEntity

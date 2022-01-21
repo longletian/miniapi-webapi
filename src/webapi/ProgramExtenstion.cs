@@ -1,4 +1,12 @@
-﻿namespace miniapi_webapi
+﻿using System.IO;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+
+namespace miniapi_webapi
 {
     public static class ProgramExtenstion
     {
@@ -24,7 +32,7 @@
         /// <param name="configuration"></param>
         public static void AddDbContextService(this WebApplicationBuilder builder, string conStr)
         {
-            builder.Services.AddDbContextPool<AppDbContext>((option) =>
+            builder.Services.AddPooledDbContextFactory<AppDbContext>((option) =>
             {
                 option.UseMySql(conStr, new MySqlServerVersion(new Version(8, 0, 27)),
                     // 配置全局拆分查询
@@ -43,7 +51,8 @@
         {
             builder.Services
                 .AddGraphQLServer()
-                .AddQueryType<UserQuery>();
+                .AddQueryType<UserQuery>()
+                .AddQueryType<DepartmentQuery>();
         }
 
         public static void AddConfigurationService(this WebApplicationBuilder builder)

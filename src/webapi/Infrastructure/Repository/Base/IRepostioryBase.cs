@@ -1,3 +1,7 @@
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+
 namespace miniapi_webapi.Infrastructure.Repository
 {
 
@@ -9,9 +13,18 @@ namespace miniapi_webapi.Infrastructure.Repository
 
     }
 
-    public interface IRepostiory<TEntity, Guid> : IRepository where TEntity : class, new()
+    public interface IRepostiory<TEntity, Guid> : IRepository,IAsyncDisposable  where TEntity : class, new()
     {
-
+        Task RemoveAsync(TEntity t);
+        Task RemoveAsync(List<TEntity> entities);
+        
+        Task AddAsync(TEntity t);
+        Task AddAsync(List<TEntity> entities);
+        
+        Task<List<TEntity>> GetAllListAsync();
+        List<TEntity> GetListAsync(Expression<Func<TEntity, bool>> predicate);
+        
+        
     }
 
     /// <summary>

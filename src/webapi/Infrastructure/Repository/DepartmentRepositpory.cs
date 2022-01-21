@@ -1,14 +1,20 @@
-﻿namespace miniapi_webapi.Infrastructure.Repository
+﻿using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
+namespace miniapi_webapi.Infrastructure.Repository
 {
-    public class DepartmentRepositpory : IDepartmentRepositpory,IAsyncDisposable
+    public class DepartmentRepositpory:RepositoryBase<DepartmentEntity>, IDepartmentRepositpory
     {
+
         private readonly AppDbContext appDbContext;
-
-        public DepartmentRepositpory(IDbContextFactory<AppDbContext> dbContextFactory)
+        public DepartmentRepositpory(IDbContextFactory<AppDbContext> _appDbContext) : base(_appDbContext)
         {
-            using (appDbContext = dbContextFactory.CreateDbContext()) { };
+            using (appDbContext = _appDbContext.CreateDbContext())
+            {
+            }
         }
-
+        
         /// <summary>
         /// 获取所有的部门
         /// </summary>
@@ -22,7 +28,7 @@
             }
             return departmentEntities;
         }
-
+        
         /// <summary>
         /// 新增
         /// </summary>
@@ -34,7 +40,7 @@
             await appDbContext.SaveChangesAsync();
             return dto;
         }
-
+        
         // <summary>
         /// 修改
         /// </summary>
@@ -46,7 +52,7 @@
             await appDbContext.SaveChangesAsync();
             return dto;
         }
-
+        
         /// <summary>
         /// 根据Id集合批量删除
         /// </summary>
@@ -57,7 +63,7 @@
             appDbContext.RemoveRange(departmentEntities);
             await appDbContext.SaveChangesAsync();
         }
-
+        
         /// <summary>
         ///  删除
         /// </summary>
@@ -73,7 +79,7 @@
             }
             return default(DepartmentEntity);
         }
-
+        
         /// <summary>
         /// 根据Id获取实体
         /// </summary>
@@ -82,11 +88,6 @@
         public async Task<DepartmentEntity> GetAsync(Guid id)
         {
             return await appDbContext.DepartmentEntities.Where((x) => x.IsDeleted == 0 && x.Id == id).FirstOrDefaultAsync()??throw new ArgumentException("");
-        }
-
-        public ValueTask DisposeAsync()
-        {
-            throw new NotImplementedException();
         }
     }
 }

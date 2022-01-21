@@ -1,4 +1,6 @@
-﻿namespace miniapi_webapi.Model
+﻿using System.Collections.Generic;
+
+namespace miniapi_webapi.Model
 {
     [Table("t_permission")]
     public class PermissionEntity

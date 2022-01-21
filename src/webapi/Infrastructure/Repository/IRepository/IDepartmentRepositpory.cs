@@ -1,13 +1,9 @@
-﻿namespace miniapi_webapi.Infrastructure.Repository
+﻿using System.Threading.Tasks;
+
+namespace miniapi_webapi.Infrastructure.Repository
 {
     public interface IDepartmentRepositpory:IRepositoryBase<DepartmentEntity>
     {
-        /// <summary>
-        /// 获取所有的部门
-        /// </summary>
-        /// <returns></returns>
-        Task<List<DepartmentEntity>> GetAllDepartmentEntitiesAsync(Guid? parentId);
-
         /// <summary>
         /// 新增
         /// </summary>

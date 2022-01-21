@@ -1,4 +1,6 @@
-﻿namespace miniapi_webapi.Model.Entitys
+﻿using System.Collections.Generic;
+
+namespace miniapi_webapi.Model.Entitys
 {
     [Table("t_department")]
     public class DepartmentEntity
