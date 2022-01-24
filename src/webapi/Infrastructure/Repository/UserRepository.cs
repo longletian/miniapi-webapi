@@ -4,6 +4,7 @@
     {
         public UserRepository(IDbContextFactory<AppDbContext> _appDbContext) : base(_appDbContext)
         {
+
         }
     }
 }

@@ -15,7 +15,7 @@
         /// <param name="context"></param>
         /// <param name="userRepository"></param>
         /// <returns></returns>
-        //[UseDbContext(typeof(AppDbContext))]
+        [UseDbContext(typeof(AppDbContext))]
         public async Task<UserEntity> GetUserV1Data(Guid guid, IResolverContext context, [ScopedService] IUserRepository userRepository)
         {
             return await context.BatchDataLoader<Guid, UserEntity>(

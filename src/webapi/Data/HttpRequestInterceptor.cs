@@ -1,8 +1,5 @@
-using System.Threading;
-using System.Threading.Tasks;
 using HotChocolate.AspNetCore;
 using HotChocolate.Execution;
-using Microsoft.AspNetCore.Http;
 
 namespace miniapi_webapi.Data
 {

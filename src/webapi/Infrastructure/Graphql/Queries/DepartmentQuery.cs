@@ -2,7 +2,6 @@ namespace miniapi_webapi.Infrastructure.Graphql
 {
     public class DepartmentQuery
     {
-
         /// <summary>
         /// 获取所有的部门
         /// </summary>
