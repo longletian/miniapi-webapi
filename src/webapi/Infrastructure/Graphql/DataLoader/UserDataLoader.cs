@@ -1,9 +1,4 @@
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using GreenDonut;
-
-namespace miniapi_webapi.Infrastructure.Graphql.DataLoader
+namespace miniapi_webapi.Infrastructure.Graphql
 {
     public class UserDataLoader:BatchDataLoader<Guid, UserEntity>
     {
@@ -16,10 +11,10 @@ namespace miniapi_webapi.Infrastructure.Graphql.DataLoader
 
         protected async override Task<IReadOnlyDictionary<Guid, UserEntity>> LoadBatchAsync(IReadOnlyList<Guid> keys, CancellationToken cancellationToken)
         {
-            List<UserEntity> userEntities = userRepository.GetAllListAsync().Result.ToList();
+            var userEntities = await userRepository.GetAllListAsync();
             return userEntities
                 ?.Where(s => keys.Contains(s.Id))
-                .ToDictionary(t => t.Id);
+                ?.ToDictionary(t => t.Id) ?? throw new ArgumentNullException("");
         }
     }
 }

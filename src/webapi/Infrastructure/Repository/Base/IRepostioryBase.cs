@@ -17,14 +17,11 @@ namespace miniapi_webapi.Infrastructure.Repository
     {
         Task RemoveAsync(TEntity t);
         Task RemoveAsync(List<TEntity> entities);
-        
         Task AddAsync(TEntity t);
         Task AddAsync(List<TEntity> entities);
-        
         Task<List<TEntity>> GetAllListAsync();
-        List<TEntity> GetListAsync(Expression<Func<TEntity, bool>> predicate);
-        
-        
+        Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate);
+        Task UpdateAsync(TEntity t);
     }
 
     /// <summary>

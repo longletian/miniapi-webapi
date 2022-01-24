@@ -1,10 +1,3 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using miniapi_webapi;
-
 var appName = "miniapi-webapi";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,17 +26,10 @@ app.UseRouting();
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapGraphQLVoyager();
-    // endpoints.MapControllers();
+    endpoints.MapGraphQL();
 });
 
-// ui
-app.UseGraphQLVoyager(new VoyagerOptions()
-{
-    GraphQLEndPoint = "/graphql"
-}, "/graphql-voyager");
-
-// app.UseGraphqlUI();
+app.UseGraphqlUI();
 
 /// <summary>
 /// ����ʵ������

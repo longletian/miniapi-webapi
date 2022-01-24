@@ -1,50 +1,90 @@
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace miniapi_webapi.Infrastructure.Repository
 {
-    public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class,new ()
+    public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class, new()
     {
-        private readonly AppDbContext appDbContext;
-
+        private readonly IDbContextFactory<AppDbContext> dbContextFactory;
         public RepositoryBase(IDbContextFactory<AppDbContext> _appDbContext)
         {
-            using (appDbContext = _appDbContext.CreateDbContext()) ;
-        }
-        
-        public Task RemoveAsync(TEntity t)
-        {
-            throw new NotImplementedException();
+            dbContextFactory = _appDbContext ?? throw new ArgumentException(nameof(AppDbContext));
         }
 
-        public Task RemoveAsync(List<TEntity> entities)
+        public async Task RemoveAsync(TEntity t)
         {
-            throw new NotImplementedException();
+            using (var appDbContext = dbContextFactory.CreateDbContext())
+            {
+                appDbContext.Remove(t);
+                await appDbContext.SaveChangesAsync();
+            }
         }
 
-        public Task AddAsync(TEntity t)
+        public async Task RemoveAsync(List<TEntity> entities)
         {
-            throw new NotImplementedException();
+            if (entities.Count() <= 0)
+            {
+                throw new ArgumentNullException(nameof(entities));
+            }
+            using (var appDbContext = dbContextFactory.CreateDbContext())
+            {
+                appDbContext.RemoveRange(entities);
+                await appDbContext.SaveChangesAsync();
+            }
         }
 
-        public Task AddAsync(List<TEntity> entities)
+        public async Task AddAsync(TEntity t)
         {
-            throw new NotImplementedException();
+            using (var appDbContext = dbContextFactory.CreateDbContext())
+            {
+                await appDbContext.AddAsync(t);
+                await appDbContext.SaveChangesAsync();
+            }
         }
 
-        public Task<List<TEntity>> GetAllListAsync()
+        public async Task AddAsync(List<TEntity> entities)
         {
-            throw new NotImplementedException();
+            if (entities.Count() <= 0)
+            {
+                throw new ArgumentNullException(nameof(entities));
+            }
+            using (var appDbContext = dbContextFactory.CreateDbContext())
+            {
+                await appDbContext.AddRangeAsync(entities);
+                await appDbContext.SaveChangesAsync();
+            }
         }
 
-        public List<TEntity> GetListAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<List<TEntity>> GetAllListAsync()
         {
-            throw new NotImplementedException();
+            using (var appDbContext = dbContextFactory.CreateDbContext())
+            {
+                return await appDbContext.Set<TEntity>().ToListAsync();
+            }
         }
-        
+
+        public async Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            using (var appDbContext = dbContextFactory.CreateDbContext())
+            {
+                return await appDbContext.Set<TEntity>().Where(predicate).ToListAsync();
+            }
+        }
+
         public ValueTask DisposeAsync()
         {
-            return appDbContext.DisposeAsync();
+            using (var appDbContext = dbContextFactory.CreateDbContext())
+            {
+                return appDbContext.DisposeAsync();
+            };
+        }
+
+        public async Task UpdateAsync(TEntity t)
+        {
+            using (var appDbContext = dbContextFactory.CreateDbContext())
+            {
+                appDbContext.Update(t);
+                await appDbContext.SaveChangesAsync();
+            }
         }
     }
 }

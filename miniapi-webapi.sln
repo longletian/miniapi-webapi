@@ -1,23 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C2EB3B1B-CE1F-45BF-AF33-2C7584BBC5D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "miniapi-webapi", "src\webapi\miniapi-webapi.csproj", "{10131B98-3473-4441-876A-E6BFD9F056E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "miniapi-webapi", "src\webapi\miniapi-webapi.csproj", "{10131B98-3473-4441-876A-E6BFD9F056E7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{BE6D1456-DA9F-438A-B558-86DA75F65A08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "miniapi-webapi", "test\miniapi-webapi\miniapi-webapi.csproj", "{BFA420EA-8373-4343-BB54-EBEF0F0E5F1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "miniapi-webapi_test", "test\miniapi-webapi\miniapi-webapi_test.csproj", "{BFA420EA-8373-4343-BB54-EBEF0F0E5F1D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ABF063EF-C1B6-459A-ABFD-25A1AA260BAF}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{10131B98-3473-4441-876A-E6BFD9F056E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -29,8 +31,14 @@ Global
 		{BFA420EA-8373-4343-BB54-EBEF0F0E5F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFA420EA-8373-4343-BB54-EBEF0F0E5F1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{10131B98-3473-4441-876A-E6BFD9F056E7} = {C2EB3B1B-CE1F-45BF-AF33-2C7584BBC5D6}
 		{BFA420EA-8373-4343-BB54-EBEF0F0E5F1D} = {BE6D1456-DA9F-438A-B558-86DA75F65A08}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34997C3E-C8F6-4390-A162-6CE42028CCF4}
 	EndGlobalSection
 EndGlobal

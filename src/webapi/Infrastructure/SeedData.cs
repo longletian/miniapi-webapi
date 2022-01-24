@@ -10,7 +10,14 @@ namespace miniapi_webapi.Infrastructure
         public static async Task SeedAsync(IServiceProvider serviceProvider)
         {
             using var context = new AppDbContext(serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>());
-          
+
+            if (context.UserEntities.Any())
+            {
+              
+            }
+            else
+            { 
+
             context.Database.EnsureDeleted();
             
             context.Database.EnsureCreated();
@@ -105,6 +112,7 @@ namespace miniapi_webapi.Infrastructure
             );
 
             await context.SaveChangesAsync();
+            }
         }
     }
 }

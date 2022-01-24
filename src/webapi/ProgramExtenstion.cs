@@ -1,11 +1,4 @@
-﻿using System.IO;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-
+﻿
 namespace miniapi_webapi
 {
     public static class ProgramExtenstion
@@ -40,7 +33,7 @@ namespace miniapi_webapi
                         .LogTo(Console.WriteLine, LogLevel.Debug)
                         .EnableSensitiveDataLogging()
                         .EnableDetailedErrors();
-            });
+            },10);
         }
 
         /// <summary>
@@ -52,7 +45,9 @@ namespace miniapi_webapi
             builder.Services
                 .AddGraphQLServer()
                 .AddQueryType<UserQuery>()
-                .AddQueryType<DepartmentQuery>();
+                //.AddQueryType<DepartmentQuery>();
+                //.AddMutationType<DepartmentMutation>()
+                .AddMutationType<UserMutation>();
         }
 
         public static void AddConfigurationService(this WebApplicationBuilder builder)

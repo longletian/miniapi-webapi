@@ -6,7 +6,6 @@ namespace miniapi_webapi.Infrastructure.Repository
 {
     public class DepartmentRepositpory:RepositoryBase<DepartmentEntity>, IDepartmentRepositpory
     {
-
         private readonly AppDbContext appDbContext;
         public DepartmentRepositpory(IDbContextFactory<AppDbContext> _appDbContext) : base(_appDbContext)
         {
@@ -28,31 +27,7 @@ namespace miniapi_webapi.Infrastructure.Repository
             }
             return departmentEntities;
         }
-        
-        /// <summary>
-        /// 新增
-        /// </summary>
-        /// <param name="dto">实体</param>
-        /// <returns></returns>
-        public async Task<DepartmentEntity> InsertAsync(DepartmentEntity dto)
-        {
-            await appDbContext.AddAsync(dto);
-            await appDbContext.SaveChangesAsync();
-            return dto;
-        }
-        
-        // <summary>
-        /// 修改
-        /// </summary>
-        /// <param name="dto">实体</param>
-        /// <returns></returns>
-        public async Task<DepartmentEntity> UpdateAsync(DepartmentEntity dto)
-        {
-            appDbContext.Update(dto);
-            await appDbContext.SaveChangesAsync();
-            return dto;
-        }
-        
+
         /// <summary>
         /// 根据Id集合批量删除
         /// </summary>
@@ -62,22 +37,6 @@ namespace miniapi_webapi.Infrastructure.Repository
             List<DepartmentEntity> departmentEntities = await appDbContext.DepartmentEntities.Where((x) => x.IsDeleted == 0 && ids.Contains(x.Id)).ToListAsync();
             appDbContext.RemoveRange(departmentEntities);
             await appDbContext.SaveChangesAsync();
-        }
-        
-        /// <summary>
-        ///  删除
-        /// </summary>
-        /// <param name="id">Id</param>
-        public async Task<DepartmentEntity?> DeleteAsync(Guid id)
-        {
-            DepartmentEntity departmentEntity = await appDbContext.DepartmentEntities.Where((x) => x.IsDeleted == 0 && x.Id == id).FirstOrDefaultAsync();
-            if (departmentEntity != null)
-            {
-                appDbContext.Remove(departmentEntity);
-                await appDbContext.SaveChangesAsync();
-                return departmentEntity;
-            }
-            return default(DepartmentEntity);
         }
         
         /// <summary>

@@ -9,3 +9,4 @@ global using Microsoft.EntityFrameworkCore;
 global using System.ComponentModel.DataAnnotations.Schema;
 global using GraphQL.Server.Ui.Voyager;
 global using System.Collections.Generic;
+global using HotChocolate.Resolvers;
