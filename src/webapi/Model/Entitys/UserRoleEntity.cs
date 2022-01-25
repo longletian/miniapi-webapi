@@ -13,12 +13,12 @@ namespace miniapi_webapi.Model.Entitys
         }
 
         [NotMapped]
-        public UserEntity UserEntity { get; set; }
+        public UserEntity UserEntity { get; set; } = null!;
 
         public Guid UserId { get; set; }
 
         [NotMapped]
-        public RoleEntity RoleEntity { get; set; }
+        public RoleEntity RoleEntity { get; set; } = null!;
 
         public Guid RoleId { get; set; }
 

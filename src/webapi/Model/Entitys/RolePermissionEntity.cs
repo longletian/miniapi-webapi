@@ -11,12 +11,12 @@
         }
 
         [NotMapped]
-        public RoleEntity RoleEntity { get; set; }
+        public RoleEntity RoleEntity { get; set; } = null!;
 
         public Guid RoleId { get; set; }
 
         [NotMapped]
-        public PermissionEntity PermissionEntity { get; set; }
+        public PermissionEntity PermissionEntity { get; set; } = null!;
 
         public Guid PermissionId { get; set; }
 

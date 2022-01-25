@@ -7,12 +7,12 @@
 
         }
 
-        public DbSet<UserEntity> UserEntities { get; set; }
-        public DbSet<RoleEntity> RoleEntities { get; set; }
-        public DbSet<PermissionEntity> PermissionEntities { get; set; }
-        public DbSet<UserRoleEntity> UserRoles { get; set; }
-        public DbSet<RolePermissionEntity> RolePermissions { get; set; }
-        public DbSet<DepartmentEntity> DepartmentEntities { get; set; }
+        public DbSet<UserEntity> UserEntities =>Set<UserEntity>();
+        public DbSet<RoleEntity> RoleEntities => Set<RoleEntity>();
+        public DbSet<PermissionEntity> PermissionEntities => Set<PermissionEntity>();
+        public DbSet<UserRoleEntity> UserRoles => Set<UserRoleEntity>();
+        public DbSet<RolePermissionEntity> RolePermissions => Set<RolePermissionEntity>();
+        public DbSet<DepartmentEntity> DepartmentEntities => Set<DepartmentEntity>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

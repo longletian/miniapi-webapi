@@ -3,6 +3,7 @@
     public class UserQuery
     {
         [UseDbContext(typeof(AppDbContext))]
+        [GraphQLDescription("users")]
         public async Task<UserEntity> GetUserData(Guid id, UserDataLoader userDataLoader)
         {
             return await userDataLoader.LoadAsync(id);

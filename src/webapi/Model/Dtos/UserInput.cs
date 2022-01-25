@@ -50,6 +50,4 @@
     /// <param name="accountPwd"></param>
     /// <param name="code"></param>
     public record UseLoginInput(string account, string accountPwd, string code);
-
-
 }

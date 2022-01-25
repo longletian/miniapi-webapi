@@ -47,7 +47,8 @@ namespace miniapi_webapi
                 .AddQueryType<UserQuery>()
                 //.AddQueryType<DepartmentQuery>()
                 //.AddMutationType<DepartmentMutation>()
-                .AddMutationType<UserMutation>();
+                .AddMutationType<UserMutation>()
+                .AddErrorInterfaceType<IErrorResponse>();
         }
 
         public static void AddConfigurationService(this WebApplicationBuilder builder)
