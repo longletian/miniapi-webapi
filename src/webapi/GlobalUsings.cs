@@ -1,4 +1,5 @@
-﻿global using miniapi_webapi;
+﻿//公用依赖引入
+global using miniapi_webapi;
 global using miniapi_webapi.Model;
 global using miniapi_webapi.Model.Entitys;
 global using miniapi_webapi.Infrastructure.Repository;

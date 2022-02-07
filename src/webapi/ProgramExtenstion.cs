@@ -42,6 +42,7 @@ namespace miniapi_webapi
         /// <param name="builder"></param>
         public static void AddGraphqlService(this WebApplicationBuilder builder)
         {
+            // graphql组件没有适应.net6环境
             builder.Services
                 .AddGraphQLServer()
                 .AddQueryType<UserQuery>()

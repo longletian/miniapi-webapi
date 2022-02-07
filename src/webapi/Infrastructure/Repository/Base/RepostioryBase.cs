@@ -2,6 +2,11 @@ using System.Linq.Expressions;
 
 namespace miniapi_webapi.Infrastructure.Repository
 {
+
+    /// <summary>
+    /// 解决Efcore多并发问题
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class, new()
     {
         private readonly IDbContextFactory<AppDbContext> dbContextFactory;

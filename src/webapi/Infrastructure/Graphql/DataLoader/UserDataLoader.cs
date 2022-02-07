@@ -2,6 +2,7 @@ namespace miniapi_webapi.Infrastructure.Graphql
 {
     public class UserDataLoader:BatchDataLoader<Guid, UserEntity>
     {
+      
         private readonly IUserRepository userRepository;
         
         public UserDataLoader(IBatchScheduler batchScheduler, IUserRepository _userRepository,DataLoaderOptions? options = null) : base(batchScheduler, options)
