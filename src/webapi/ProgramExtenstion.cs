@@ -46,8 +46,8 @@ namespace miniapi_webapi
             builder.Services
                 .AddGraphQLServer()
                 .AddQueryType<UserQuery>()
-                //.AddQueryType<DepartmentQuery>()
-                //.AddMutationType<DepartmentMutation>()
+                .AddQueryType<DepartmentQuery>()
+                .AddMutationType<DepartmentMutation>()
                 .AddMutationType<UserMutation>()
                 .AddErrorInterfaceType<IErrorResponse>();
         }
