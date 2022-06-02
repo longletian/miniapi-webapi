@@ -108,17 +108,17 @@ namespace miniapi_webapi.Migrations
                     IsEnable = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     OrderSort = table.Column<int>(type: "int", nullable: false),
-                    DepartmentId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    DepartmentEntityId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")
+                    DepartmentId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_t_user", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_t_user_t_department_DepartmentEntityId",
-                        column: x => x.DepartmentEntityId,
+                        name: "FK_t_user_t_department_DepartmentId",
+                        column: x => x.DepartmentId,
                         principalTable: "t_department",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -178,9 +178,9 @@ namespace miniapi_webapi.Migrations
                 column: "PermissionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_t_user_DepartmentEntityId",
+                name: "IX_t_user_DepartmentId",
                 table: "t_user",
-                column: "DepartmentEntityId");
+                column: "DepartmentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_t_user_role_RoleId",

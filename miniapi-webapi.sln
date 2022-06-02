@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blazorApp", "src\blazorApp\blazorApp.csproj", "{00A991EF-5585-4753-999B-4D493D648265}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 		{BFA420EA-8373-4343-BB54-EBEF0F0E5F1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFA420EA-8373-4343-BB54-EBEF0F0E5F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFA420EA-8373-4343-BB54-EBEF0F0E5F1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00A991EF-5585-4753-999B-4D493D648265}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00A991EF-5585-4753-999B-4D493D648265}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00A991EF-5585-4753-999B-4D493D648265}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00A991EF-5585-4753-999B-4D493D648265}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,6 +43,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{10131B98-3473-4441-876A-E6BFD9F056E7} = {C2EB3B1B-CE1F-45BF-AF33-2C7584BBC5D6}
 		{BFA420EA-8373-4343-BB54-EBEF0F0E5F1D} = {BE6D1456-DA9F-438A-B558-86DA75F65A08}
+		{00A991EF-5585-4753-999B-4D493D648265} = {C2EB3B1B-CE1F-45BF-AF33-2C7584BBC5D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {34997C3E-C8F6-4390-A162-6CE42028CCF4}

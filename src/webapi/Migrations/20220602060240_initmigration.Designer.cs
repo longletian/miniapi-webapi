@@ -11,7 +11,7 @@ using miniapi_webapi.Infrastructure;
 namespace miniapi_webapi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220119090955_init-migration")]
+    [Migration("20220602060240_initmigration")]
     partial class initmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,9 +83,6 @@ namespace miniapi_webapi.Migrations
                     b.Property<string>("AccountPwd")
                         .HasColumnType("varchar(100)");
 
-                    b.Property<Guid?>("DepartmentEntityId")
-                        .HasColumnType("char(36)");
-
                     b.Property<Guid>("DepartmentId")
                         .HasColumnType("char(36)");
 
@@ -118,7 +115,7 @@ namespace miniapi_webapi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DepartmentEntityId");
+                    b.HasIndex("DepartmentId");
 
                     b.ToTable("t_user");
                 });
@@ -235,9 +232,13 @@ namespace miniapi_webapi.Migrations
 
             modelBuilder.Entity("miniapi_webapi.Model.Entitys.UserEntity", b =>
                 {
-                    b.HasOne("miniapi_webapi.Model.Entitys.DepartmentEntity", null)
+                    b.HasOne("miniapi_webapi.Model.Entitys.DepartmentEntity", "DepartmentEntity")
                         .WithMany("UserEntities")
-                        .HasForeignKey("DepartmentEntityId");
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DepartmentEntity");
                 });
 
             modelBuilder.Entity("miniapi_webapi.Model.Entitys.UserRoleEntity", b =>
